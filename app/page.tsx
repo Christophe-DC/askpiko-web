@@ -165,30 +165,29 @@ export default function Page() {
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          onSubmit={async e => {
+          onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            const form = e.currentTarget as HTMLFormElement;
+            const form = e.currentTarget;
             const data = new FormData(form);
+
+            // FormData -> URLSearchParams (sans any)
             const params = new URLSearchParams();
             data.forEach((value, key) => {
               params.append(key, typeof value === 'string' ? value : value.name);
             });
 
             try {
-              await fetch('/', {
+              // 👉 poster vers le fichier statique pour Netlify Forms
+              await fetch('/__forms.html', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: params.toString(),
               });
 
-              // vider tous les champs
-              form.reset();
-
-              // afficher le message de succès
+              form.reset(); // vider
               const msg = form.querySelector('#contact-success') as HTMLElement | null;
-              if (msg) msg.classList.remove('hidden');
-            } catch (err) {
-              console.log(err);
+              if (msg) msg.classList.remove('hidden'); // afficher remerciement
+            } catch {
               alert('Submission failed, please try again.');
             }
           }}
