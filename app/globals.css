@@ -1,7 +1,53 @@
 @import "tailwindcss";
 
-:root { color-scheme: light dark; }
+:root { 
+  color-scheme: light dark; 
+  /* Brand gradient vars (you can tweak freely) */
+  --primary: #6366f1; /* indigo-500 */
+  --accent: #8b5cf6;  /* violet-500 */
+}
+
 html { scroll-behavior: smooth; }
 
-/* Helpers */
+/* Container helper to mirror design grid */
 .container { width: 100%; max-width: 1120px; }
+
+/* ---------- Pro polish & animations ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.float-animation { animation: float 6s ease-in-out infinite; }
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient { background-size: 200% 200%; animation: gradient-shift 8s ease infinite; }
+
+/* Focus ring */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Smooth transitions */
+* { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Glows */
+.glow-primary { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+.glow-accent { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .float-animation { animation: none; }
+  .animated-gradient { animation: none; }
+}

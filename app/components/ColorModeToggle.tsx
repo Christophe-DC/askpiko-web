@@ -1,9 +1,36 @@
 'use client';
+
 export default function ColorModeToggle() {
-  const toggle = () => document.documentElement.classList.toggle('dark');
+  const toggle = () => {
+    document.documentElement.classList.toggle('dark');
+  };
+
   return (
-    <button onClick={toggle} className="border border-light-border dark:border-dark-border px-4 py-2 rounded-md">
-      Theme
+    <button
+      onClick={toggle}
+      className="group relative w-12 h-12 rounded-xl border border-light-border dark:border-dark-border bg-light-surfaceSecondary dark:bg-dark-surfaceSecondary hover:bg-light-surface dark:hover:bg-dark-surface transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+      aria-label="Toggle theme"
+    >
+      {/* Icône soleil (mode clair) */}
+      <div className="absolute inset-0 flex items-center justify-center text-yellow-500 dark:opacity-0 dark:scale-50 opacity-100 scale-100 transition-all duration-300">
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fillRule="evenodd"
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </div>
+
+      {/* Icône lune (mode sombre) */}
+      <div className="absolute inset-0 flex items-center justify-center text-blue-400 opacity-0 scale-50 dark:opacity-100 dark:scale-100 transition-all duration-300">
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      </div>
+
+      {/* Animation de survol */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </button>
   );
 }
