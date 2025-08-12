@@ -169,12 +169,16 @@ export default function Page() {
             e.preventDefault();
             const form = e.currentTarget as HTMLFormElement;
             const data = new FormData(form);
+            const params = new URLSearchParams();
+            data.forEach((value, key) => {
+              params.append(key, typeof value === 'string' ? value : value.name);
+            });
 
             try {
               await fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(data as any).toString(),
+                body: params.toString(),
               });
 
               // vider tous les champs
@@ -184,6 +188,7 @@ export default function Page() {
               const msg = form.querySelector('#contact-success') as HTMLElement | null;
               if (msg) msg.classList.remove('hidden');
             } catch (err) {
+              console.log(err);
               alert('Submission failed, please try again.');
             }
           }}
