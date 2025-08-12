@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import Logo from '@/components/Logo';
-import ColorModeToggle from '@/components/ColorModeToggle';
 
 export default function Header() {
   return (

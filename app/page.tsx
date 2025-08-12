@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import QRCode from 'react-qr-code';
@@ -50,8 +49,8 @@ export default function Page() {
           whileInView={{ opacity: 1, y: 0, transition: { delay: 0.15, duration: 0.6 } }}
           viewport={{ once: true }}
         >
-          An app that checks a phone's condition in minutes and generates a shareable report. We're looking for a
-          partner to fund and support the launch.
+          An app that checks a phone&apos;s condition in minutes and generates a shareable report. We&apos;re looking
+          for a partner to fund and support the launch.
         </motion.p>
 
         <motion.div
@@ -158,7 +157,7 @@ export default function Page() {
           whileInView={{ opacity: 1, transition: { delay: 0.1 } }}
           viewport={{ once: true }}
         >
-          Agency, operator, marketplace, or fund? Write to us and let's explore a joint launch.
+          Agency, operator, marketplace, or fund? Write to us and let&apos;s explore a joint launch.
         </motion.p>
 
         <motion.form
