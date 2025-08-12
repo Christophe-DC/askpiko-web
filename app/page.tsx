@@ -165,7 +165,28 @@ export default function Page() {
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          action="/thanks"
+          onSubmit={async e => {
+            e.preventDefault();
+            const form = e.currentTarget as HTMLFormElement;
+            const data = new FormData(form);
+
+            try {
+              await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(data as any).toString(),
+              });
+
+              // vider tous les champs
+              form.reset();
+
+              // afficher le message de succès
+              const msg = form.querySelector('#contact-success') as HTMLElement | null;
+              if (msg) msg.classList.remove('hidden');
+            } catch (err) {
+              alert('Submission failed, please try again.');
+            }
+          }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-2xl border border-light-border/60 dark:border-dark-border/60 p-6 bg-light-surface/60 dark:bg-dark-surface/60 backdrop-blur"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
@@ -231,6 +252,15 @@ export default function Page() {
             <span className="text-xs text-light-textSecondary dark:text-dark-textSecondary">
               We usually reply within 24–48h.
             </span>
+          </div>
+
+          {/* Message de succès (caché par défaut) */}
+          <div
+            id="contact-success"
+            className="hidden md:col-span-2 mt-4 rounded-md border border-green-200 bg-green-50 p-3 text-sm text-green-700 dark:border-green-800/40 dark:bg-green-900/20 dark:text-green-300"
+            aria-live="polite"
+          >
+            Thank you! We’ve received your message and will process it shortly.
           </div>
         </motion.form>
       </section>
