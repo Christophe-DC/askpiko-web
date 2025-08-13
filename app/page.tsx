@@ -49,8 +49,8 @@ export default function Page() {
           whileInView={{ opacity: 1, y: 0, transition: { delay: 0.15, duration: 0.6 } }}
           viewport={{ once: true }}
         >
-          An app that checks a phone&apos;s condition in minutes and generates a shareable report. We&apos;re looking
-          for a partner to fund and support the launch.
+          Instantly verify any smartphone&apos;s condition and share a trusted report in minutes. We&apos;re seeking a
+          strategic partner to fuel our launch and scale globally.
         </motion.p>
 
         <motion.div
@@ -59,10 +59,11 @@ export default function Page() {
           whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
           viewport={{ once: true }}
         >
-          <video controls playsInline poster="/poster.jpg" className="w-full rounded-xl">
-            <source src="/demo.mp4" type="video/mp4" />
-            Your browser does not support HTML5 video.
-          </video>
+          <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-light-border dark:border-dark-border bg-black">
+            <video controls playsInline poster="/poster.jpg" className="h-full w-full object-contain">
+              <source src="/demo.mp4" type="video/mp4" />
+            </video>
+          </div>
         </motion.div>
       </section>
 
