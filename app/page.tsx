@@ -49,8 +49,9 @@ export default function Page() {
           whileInView={{ opacity: 1, y: 0, transition: { delay: 0.15, duration: 0.6 } }}
           viewport={{ once: true }}
         >
-          Instantly verify any smartphone&apos;s condition and share a trusted report in minutes. We&apos;re seeking a
-          strategic partner to fuel our launch and scale globally.
+          Want to boost your selling price? AskPiko — the world&apos;s first AI agent that makes selling your phone
+          smarter, faster, and safer. Download the app, run a quick diagnostic, and get a FREE verification certificate
+          proving your phone is in top condition and ready to sell.
         </motion.p>
 
         <motion.div
