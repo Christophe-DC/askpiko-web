@@ -172,7 +172,7 @@ function ProfileContent() {
               Change Password
             </button>
             <p className="mt-2 text-sm text-light-textSecondary dark:text-dark-textSecondary">
-              We'll send you a password reset email
+              We&apos;ll send you a password reset email
             </p>
           </div>
 
