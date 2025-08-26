@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  /* Light */
+  --color-light-surface: #FFFFFF;
+  --color-light-text:    #2B2B2B;
+  --color-light-border:  #E0E0E0;
+  --color-light-text-secondary: #6B7280;
+  --color-light-surface-secondary: #F8FAFC;
+
+  /* Dark */
+  --color-dark-surface: #111418;
+  --color-dark-text:    #F3F4F6;
+  --color-dark-border:  #292C33;
+  --color-dark-text-secondary: #9CA3AF;
+  --color-dark-surface-secondary: #1F2937;
+}
+
 :root { 
   color-scheme: light dark; 
   /* Brand gradient vars (you can tweak freely) */
