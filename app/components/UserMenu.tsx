@@ -3,11 +3,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export default function UserMenu() {
   const { user, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -86,6 +88,21 @@ export default function UserMenu() {
                   />
                 </svg>
                 Profile
+              </button>
+
+              {/* Diagnostics */}
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push('/diagnostics');
+                }}
+                className="w-full px-4 py-2 text-left text-sm text-light-text dark:text-dark-text hover:bg-light-surfaceSecondary dark:hover:bg-dark-surfaceSecondary transition-colors flex items-center gap-3"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35" />
+                  <circle cx="11" cy="11" r="7" strokeWidth={2} />
+                </svg>
+                Diagnostics
               </button>
 
               <button
