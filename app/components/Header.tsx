@@ -40,7 +40,7 @@ export default function Header() {
                       onClick={() => openAuthModal('login')}
                       className="px-4 py-2 text-sm font-medium text-light-text dark:text-dark-text hover:text-[var(--primary)] transition-colors"
                     >
-                      Sign In
+                      Login
                     </button>
                     <button
                       onClick={() => openAuthModal('signup')}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { createClient } from '@supabase/supabase-js';
+import Link from 'next/link';
 
 // Types for diagnostics
 interface DeviceReport {
@@ -392,14 +393,28 @@ export default function DiagnosticsPage() {
                     </p>
                   )}
                 </div>
-                <button
-                  onClick={() => setSelectedDiagnostic(null)}
-                  className="p-2 hover:bg-light-surfaceSecondary dark:hover:bg-dark-surfaceSecondary rounded-lg transition-colors"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+
+                <div className="flex items-center gap-2">
+                  {/* Lien vers la page du diagnostic */}
+                  <Link
+                    href={`/diagnostics/${selectedDiagnostic.id}`} // NEW
+                    className="px-3 py-2 rounded-lg border border-light-border dark:border-dark-border 
+                 hover:bg-light-surfaceSecondary dark:hover:bg-dark-surfaceSecondary
+                 text-sm"
+                    onClick={() => setSelectedDiagnostic(null)} // ferme le modal quand on navigue
+                  >
+                    Open full report
+                  </Link>
+
+                  <button
+                    onClick={() => setSelectedDiagnostic(null)}
+                    className="p-2 hover:bg-light-surfaceSecondary dark:hover:bg-dark-surfaceSecondary rounded-lg transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               {/* Detailed content */}
