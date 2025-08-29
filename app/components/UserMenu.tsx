@@ -71,7 +71,7 @@ export default function UserMenu() {
 
             {/* Menu Items */}
             <div className="py-2">
-              <button
+              {/*<button
                 onClick={() => {
                   setIsOpen(false);
                   // Ici vous pouvez rediriger vers la page de profil
@@ -88,7 +88,7 @@ export default function UserMenu() {
                   />
                 </svg>
                 Profile
-              </button>
+              </button>*/}
 
               {/* Diagnostics */}
               <button
@@ -105,7 +105,7 @@ export default function UserMenu() {
                 Diagnostics
               </button>
 
-              <button
+              {/*<button
                 onClick={() => {
                   setIsOpen(false);
                   // Ici vous pouvez rediriger vers les paramètres
@@ -128,7 +128,7 @@ export default function UserMenu() {
                   />
                 </svg>
                 Settings
-              </button>
+              </button>*/}
 
               <div className="border-t border-light-border dark:border-dark-border my-2"></div>
 

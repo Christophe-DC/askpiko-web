@@ -28,8 +28,6 @@ type PowerState = {
 interface BatteryInfo {
   health?: 'good' | 'overheat' | 'dead' | 'overvoltage' | 'unspecified' | 'cold' | 'unknown';
   capacityPercent?: number | null;
-  temperatureC?: number | null;
-  voltageMv?: number | null;
   status?: 'charging' | 'discharging' | 'not_charging' | 'full' | 'unknown';
   state?: 'unknown' | 'unplugged' | 'charging' | 'full';
   level?: number | null;
@@ -78,6 +76,8 @@ interface DeviceReport {
   camera_front_face_detected?: boolean | null;
   camera_back_face_detected?: boolean | null;
   pdf_sent?: boolean | null;
+  battery_temperature_c?: number | null;
+  battery_voltage_mv?: number | null;
 }
 
 // Animation variants
@@ -853,14 +853,12 @@ function BatteryDetails({ report }: { report: DeviceReport }) {
         <div className="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
           <div className="text-slate-600 dark:text-slate-400">Temperature</div>
           <div className="font-semibold text-slate-900 dark:text-white">
-            {formatTemperature(report.battery_info?.temperatureC)}
+            {formatTemperature(report.battery_temperature_c)}
           </div>
         </div>
         <div className="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
           <div className="text-slate-600 dark:text-slate-400">Voltage</div>
-          <div className="font-semibold text-slate-900 dark:text-white">
-            {formatVoltage(report.battery_info?.voltageMv)}
-          </div>
+          <div className="font-semibold text-slate-900 dark:text-white">{formatVoltage(report.battery_voltage_mv)}</div>
         </div>
       </div>
 
@@ -898,21 +896,21 @@ function HardwareDetails({ report }: { report: DeviceReport }) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
       {/* Storage */}
       <div className="space-y-4">
         <h4 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">💾 Storage</h4>
         <div className="space-y-3">
-          <div className="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
+          <div className="bg-slate-50 dark:bg-slate-700/50 py-3 px-1 rounded-lg">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-slate-600 dark:text-slate-400">Total Capacity</span>
-              <span className="font-semibold text-slate-900 dark:text-white">
+              <span className="text-xs text-slate-600 dark:text-slate-400">Total Capacity</span>
+              <span className="text-xs font-semibold text-slate-900 dark:text-white">
                 {formatBytes(report.total_disk_capacity)}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-sm text-slate-600 dark:text-slate-400">Available</span>
-              <span className="font-semibold text-green-600 dark:text-green-400">
+              <span className="text-xs text-slate-600 dark:text-slate-400">Available</span>
+              <span className="text-xs font-semibold text-green-600 dark:text-green-400">
                 {formatBytes(report.free_disk_storage)}
               </span>
             </div>
@@ -944,16 +942,23 @@ function HardwareDetails({ report }: { report: DeviceReport }) {
       {/* Memory */}
       <div className="space-y-4">
         <h4 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">⚡ RAM</h4>
-        <div className="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-lg">
+        <div className="bg-slate-50 dark:bg-slate-700/50 py-3 px-1  rounded-lg">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-slate-600 dark:text-slate-400">Total RAM</span>
-            <span className="font-semibold text-slate-900 dark:text-white">{formatBytes(report.total_memory)}</span>
+            <span className="text-xs text-slate-600 dark:text-slate-400">
+              Total
+              <br /> RAM
+            </span>
+            <span className="text-xs font-semibold text-slate-900 dark:text-white">
+              {formatBytes(report.total_memory)}
+            </span>
           </div>
           {report.used_memory && report.total_memory && (
             <>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600 dark:text-slate-400">Used</span>
-                <span className="font-semibold text-slate-900 dark:text-white">{formatBytes(report.used_memory)}</span>
+                <span className="text-xs text-slate-600 dark:text-slate-400">Used</span>
+                <span className="text-xs font-semibold text-slate-900 dark:text-white">
+                  {formatBytes(report.used_memory)}
+                </span>
               </div>
               <div className="mt-2">
                 <div className="w-full bg-slate-200 dark:bg-slate-600 rounded-full h-2">
