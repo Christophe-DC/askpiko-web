@@ -61,7 +61,7 @@ export default function Page() {
           viewport={{ once: true }}
         >
           <div className="w-full aspect-[16/9] rounded-xl overflow-hidden border border-light-border dark:border-dark-border bg-black">
-            <video controls playsInline poster="/poster.jpg" className="h-full w-full object-contain">
+            <video controls playsInline className="h-full w-full object-contain">
               <source src="/demo.mp4" type="video/mp4" />
             </video>
           </div>
